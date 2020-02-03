@@ -36,10 +36,10 @@ void triObj(item * object,int perso){
 	//verif tab obj
 		for(int i = 0; i < 49; i++){
 			
-			for(int j = (i+1); j < 50; j++){ 
+			for(int j = 1; j < 50; j++){ 
 				
 				//vérif tab nom
-				if(strcmp(object[j].nom,"") > 0){
+				if(strcmp(object[j].nom, "") > 0){
 					
 					for(int k = 1; k < 30; k++){
 						
@@ -109,10 +109,14 @@ void addObj(item * object,int perso){
 };
 
 void buyItem(item * inventaire, item * object, int posItem){
+	posItem -= 1;
 	for(int i = 0; i < 50; i++){
-		if(strcmp(inventaire[i].nom, "") > 0){
+		if(strcmp(object[i].nom, "") == 0){
+			
 			strcpy(inventaire[i].nom, object[posItem].nom);
 			inventaire[i].prix, object[posItem].prix;
+			strcpy(object[posItem].nom,"");
+			object[posItem].prix = 0;
 			
 			i = 50;
 		}
